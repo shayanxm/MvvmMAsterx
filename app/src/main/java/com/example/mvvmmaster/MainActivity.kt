@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProviders
 import com.example.mvvmmaster.databinding.ActivityMainBinding
+import com.example.mvvmmaster.model.Repository
 import com.example.mvvmmaster.viewmodel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -17,8 +18,10 @@ private lateinit var viewModel: MainViewModel
         viewModel= ViewModelProviders.of(this).get(MainViewModel::class.java)
         binding.viewModel = viewModel
 button.setOnClickListener { unit->
-    viewModel.justCreateATest("changedBBu")
 
+    Repository.enteredNameList.value= Repository.enteredNameList.value.plus(viewModel.nameEntered)
+    viewModel.justCreateATest("changedBBu")
+viewModel.showEnteredName()
 }
     }
 }
